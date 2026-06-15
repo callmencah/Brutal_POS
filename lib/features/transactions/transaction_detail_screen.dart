@@ -6,6 +6,7 @@ import '../../data/models/transaction.dart' as model;
 import '../../data/repositories/product_repository.dart';
 import '../../data/repositories/transaction_repository.dart';
 import '../../core/utils/refresh_notifier.dart';
+import '../../core/services/telegram_service.dart';
 
 class TransactionDetailScreen extends StatefulWidget {
   final String transactionId;
@@ -195,6 +196,9 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
             : reasonController.text.trim();
 
         await _repo.voidTransaction(_transaction!.id!, reason);
+
+        // Send telegram notification
+        TelegramService.sendVoidNotification(_transaction!.id!, reason, _transaction!.total);
 
         // Restore stock for items in the voided transaction
         if (_transaction!.items != null) {

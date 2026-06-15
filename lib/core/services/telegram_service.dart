@@ -79,4 +79,38 @@ class TelegramService {
       print('Error sending telegram backup: $e');
     }
   }
+
+  /// Sends a notification message to Telegram when a transaction is voided
+  static Future<void> sendVoidNotification(int transactionId, String reason, double amount) async {
+    try {
+      final config = await getConfig();
+      final bool isEnabled = config['enabled'];
+      final String token = config['token'];
+      final String chatId = config['chatId'];
+
+      if (!isEnabled || token.isEmpty || chatId.isEmpty) {
+        return; 
+      }
+
+      final text = '🚨 *TRANSACTION VOIDED* 🚨\n\n'
+          'TXN: #${transactionId.toString().padLeft(4, '0')}\n'
+          'Amount: Rp ${amount.toStringAsFixed(0)}\n'
+          'Reason: $reason';
+
+      final uri = Uri.parse('https://api.telegram.org/bot$token/sendMessage');
+      final response = await http.post(uri, body: {
+        'chat_id': chatId,
+        'text': text,
+        'parse_mode': 'Markdown',
+      });
+
+      if (response.statusCode != 200) {
+        print('Telegram Void Notification Failed: ${response.statusCode} - ${response.body}');
+      } else {
+        print('Telegram Void Notification Success for TXN #$transactionId');
+      }
+    } catch (e) {
+      print('Error sending telegram void notification: $e');
+    }
+  }
 }
