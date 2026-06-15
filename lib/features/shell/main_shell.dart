@@ -19,9 +19,15 @@ class MainShell extends StatelessWidget {
       valueListenable: isDarkModeNotifier,
       builder: (context, isDark, child) {
         return PopScope(
-          canPop: false,
+          canPop: GoRouter.of(context).canPop(),
           onPopInvokedWithResult: (didPop, result) async {
             if (didPop) return;
+
+            if (navigationShell.currentIndex != 0) {
+              navigationShell.goBranch(0);
+              return;
+            }
+
             final bool shouldPop = await showDialog<bool>(
               context: context,
               builder: (context) {
