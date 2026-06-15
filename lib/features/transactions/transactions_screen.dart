@@ -157,7 +157,7 @@ class _TransactionsViewState extends State<_TransactionsView> {
                                 fontWeight: FontWeight.w700,
                                 color: AppColors.textPrimary,
                               ),
-                              items: ['All', 'Cash', 'QRIS', 'E-WALLET', 'Card']
+                              items: ['All', 'Cash', 'QRIS', 'E-WALLET', 'Card', 'Void']
                                   .map((method) => DropdownMenuItem(
                                         value: method,
                                         child: Text(method.toUpperCase()),
@@ -307,7 +307,9 @@ class _TransactionsViewState extends State<_TransactionsView> {
                                     ).toList();
                                   }
                                   
-                                  if (_selectedPaymentMethod != 'All') {
+                                  if (_selectedPaymentMethod == 'Void') {
+                                    displayed = displayed.where((tx) => tx.status == 'voided').toList();
+                                  } else if (_selectedPaymentMethod != 'All') {
                                     final filterKey = _selectedPaymentMethod.toLowerCase().replaceAll('-', '').replaceAll('_', '');
                                     displayed = displayed.where((tx) {
                                       final txMethod = tx.paymentMethod.toLowerCase().replaceAll('-', '').replaceAll('_', '');
