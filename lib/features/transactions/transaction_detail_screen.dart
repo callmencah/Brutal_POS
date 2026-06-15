@@ -5,6 +5,7 @@ import '../../core/constants/app_constants.dart';
 import '../../data/models/transaction.dart' as model;
 import '../../data/repositories/product_repository.dart';
 import '../../data/repositories/transaction_repository.dart';
+import '../../core/utils/refresh_notifier.dart';
 
 class TransactionDetailScreen extends StatefulWidget {
   final String transactionId;
@@ -204,6 +205,8 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
 
         // Reload transaction
         await _loadTransaction();
+        triggerGlobalRefresh();
+        
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
