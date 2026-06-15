@@ -978,7 +978,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           await Share.shareXFiles([file], text: 'Here is your receipt from ${AppConstants.appName}.');
                         },
                       ),
-                    ),
                   ],
                 ),
                 const SizedBox(height: 12),
