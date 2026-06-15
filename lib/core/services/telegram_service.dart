@@ -60,7 +60,7 @@ class TelegramService {
       final uri = Uri.parse('https://api.telegram.org/bot$token/sendPhoto');
       final request = http.MultipartRequest('POST', uri)
         ..fields['chat_id'] = chatId
-        ..fields['caption'] = 'Backup Receipt #$receiptId'
+        ..fields['caption'] = 'Backup Receipt #${receiptId.toString().padLeft(4, '0')}'
         ..files.add(http.MultipartFile.fromBytes(
           'photo',
           pngBytes,

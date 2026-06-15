@@ -51,7 +51,7 @@ class ReceiptPrinter {
                 mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                 children: [
                   pw.Text('ID:', style: const pw.TextStyle(fontSize: 8)),
-                  pw.Text('#${transaction.id}', style: const pw.TextStyle(fontSize: 8)),
+                  pw.Text('#${transaction.id.toString().padLeft(4, '0')}', style: const pw.TextStyle(fontSize: 8)),
                 ],
               ),
               pw.SizedBox(height: 4),
@@ -162,7 +162,7 @@ class ReceiptPrinter {
     final pdfBytes = await generateReceiptPdf(transaction);
     await Printing.layoutPdf(
       onLayout: (PdfPageFormat format) async => pdfBytes,
-      name: 'Receipt_${transaction.id}',
+      name: 'Receipt_${transaction.id.toString().padLeft(4, '0')}',
     );
   }
 }

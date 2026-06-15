@@ -847,7 +847,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
                 const SizedBox(height: 8),
                 Text(
-                  'Transaction #${state.transactionId}',
+                  'Transaction #${state.transactionId.toString().padLeft(4, '0')}',
                   style: GoogleFonts.inter(
                     fontSize: 14,
                     color: AppColors.textSecondary,
