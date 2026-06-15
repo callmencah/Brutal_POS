@@ -14,7 +14,7 @@ class ExportHelper {
     required String fileName,
     required List<List<dynamic>> rows,
   }) async {
-    final csvData = const ListToCsvConverter().convert(rows);
+    final csvData = ListToCsvConverter().convert(rows);
     final directory = await getApplicationDocumentsDirectory();
     final file = File('${directory.path}/$fileName.csv');
     await file.writeAsString(csvData);

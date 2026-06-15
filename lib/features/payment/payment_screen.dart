@@ -959,7 +959,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         icon: Icons.share,
                         height: 50,
                         fontSize: 14,
-                        color: AppColors.secondary,
+                        variant: BrutalButtonVariant.secondary,
                         onPressed: () async {
                           final tx = Transaction(
                             id: state.transactionId,
@@ -1137,7 +1137,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         icon: Icons.share,
                         height: 64,
                         fontSize: 16,
-                        color: AppColors.secondary,
+                        variant: BrutalButtonVariant.secondary,
                         onPressed: () async {
                           final cartState = context.read<CartCubit>().state;
                           final receiptItems = cartState.items
