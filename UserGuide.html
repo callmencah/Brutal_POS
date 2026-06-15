@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide - BrutalPOS</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2, h3 {
+            color: #d35400;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        h2 {
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            display: block;
+        }
+        .header-subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 50px;
+        }
+        .step {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Buku Panduan BrutalPOS</h1>
+    <div class="header-subtitle">Panduan Lengkap Penggunaan Aplikasi Kasir Modern</div>
+
+    <div class="step">
+        <h2>1. Halaman Dashboard (Beranda)</h2>
+        <p>Halaman Dashboard adalah pusat kontrol utama Anda saat pertama kali membuka aplikasi. Di sini Anda dapat melihat ringkasan singkat tentang performa bisnis Anda hari ini.</p>
+        <img src="C:\Users\Root\.gemini\antigravity\brain\9cc98b20-ba04-4a2e-8714-41dc77ce0b1a\pos_dashboard_1781212418287.png" alt="Dashboard BrutalPOS">
+        <ul>
+            <li><strong>Ringkasan Penjualan:</strong> Pantau total pendapatan harian dan jumlah transaksi secara instan.</li>
+            <li><strong>Quick Actions (Aksi Cepat):</strong> Gunakan tombol pintas untuk langsung menuju menu Kasir, Tambah Produk, atau Pengaturan tanpa harus melalui menu utama.</li>
+            <li><strong>Transaksi Terbaru:</strong> Lihat riwayat singkat 5 transaksi terakhir yang berhasil dilakukan oleh kasir.</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h2>2. Menu Transaksi (Kasir / Point of Sale)</h2>
+        <p>Menu ini merupakan area kerja utama kasir untuk melayani pelanggan. Aplikasi didesain dengan gaya grid yang ramah dan intuitif.</p>
+        <img src="C:\Users\Root\.gemini\antigravity\brain\9cc98b20-ba04-4a2e-8714-41dc77ce0b1a\pos_transaction_1781212428498.png" alt="Transaksi BrutalPOS">
+        <ul>
+            <li><strong>Mencari Produk:</strong> Gunakan kolom pencarian di bagian atas atau filter kategori (seperti Minuman, Makanan, dsb.) untuk mempercepat penemuan produk.</li>
+            <li><strong>Menambah ke Keranjang:</strong> Ketuk produk mana saja di sebelah kiri, dan produk tersebut akan otomatis masuk ke Keranjang (Cart) di sebelah kanan.</li>
+            <li><strong>Mengubah Kuantitas:</strong> Gunakan tombol plus <b>(+)</b> atau minus <b>(-)</b> pada panel keranjang untuk menambah atau mengurangi jumlah barang.</li>
+            <li><strong>Rincian Keranjang:</strong> Di bagian bawah keranjang, sistem otomatis menghitung Subtotal, Diskon (jika ada kupon), Pajak (Tax), dan Biaya Layanan sebelum tombol Lanjutkan ke Pembayaran.</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h2>3. Proses Pembayaran (Checkout)</h2>
+        <p>Setelah pelanggan selesai memesan, tekan tombol "Proceed to Payment" (Lanjutkan ke Pembayaran) untuk masuk ke halaman Checkout.</p>
+        <img src="C:\Users\Root\.gemini\antigravity\brain\9cc98b20-ba04-4a2e-8714-41dc77ce0b1a\pos_payment_1781212444204.png" alt="Payment BrutalPOS">
+        <ul>
+            <li><strong>Metode Pembayaran:</strong> Pilih apakah pelanggan membayar menggunakan <b>Cash (Tunai)</b>, <b>QRIS</b>, <b>E-Wallet</b>, atau <b>Card (Kartu)</b>.</li>
+            <li><strong>Input Nominal Uang (Cash):</strong> Jika membayar tunai, kasir bisa mengetikkan nominal uang yang diterima pelanggan.</li>
+            <li><strong>Tombol Cepat (Quick Amounts):</strong> Gunakan tombol pintar seperti <b>50K</b>, <b>100K</b>, atau <b>Exact (Pas)</b> agar kasir tidak perlu mengetik nominal secara manual.</li>
+            <li><strong>Penghitungan Kembalian & Pembulatan:</strong> Sistem otomatis akan melakukan pembulatan nilai untuk metode Tunai dan menghitung kembalian (Change) pelanggan.</li>
+            <li><strong>Selesaikan Transaksi:</strong> Klik <b>Pay Now (Bayar Sekarang)</b>. Setelah sukses, Anda dapat memilih untuk mencetak setruk (Print Receipt) atau memulai transaksi baru.</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h2>4. Fitur Tambahan Lainnya</h2>
+        <p>BrutalPOS juga menyediakan modul ekstra untuk memudahkan operasional restoran/toko Anda:</p>
+        <ul>
+            <li><strong>Manage Products:</strong> Atur stok barang, gambar, nama, dan harga produk kapan saja.</li>
+            <li><strong>Coupons:</strong> Buat kupon promo berupa persen (%) atau potongan harga langsung (Rp).</li>
+            <li><strong>Transaction History:</strong> Cek semua riwayat penjualan, lihat setruk lama, dan batalkan (Void) transaksi jika terdapat kesalahan (membutuhkan alasan yang valid).</li>
+            <li><strong>Settings:</strong> Ganti bahasa aplikasi (Inggris/Indonesia), dan atur persentase Pajak dan Service Charge sesuai kebutuhan kafe/toko Anda.</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 BrutalPOS. All Rights Reserved.<br>
+        Dokumen panduan ini digenerasikan secara otomatis untuk kelancaran operasional Anda.
+    </div>
+
+</body>
+</html>
