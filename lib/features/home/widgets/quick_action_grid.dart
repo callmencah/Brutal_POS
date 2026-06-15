@@ -17,24 +17,28 @@ class QuickActionGrid extends StatelessWidget {
         label: 'POS',
         color: AppColors.primary,
         route: '/pos',
+        isTab: true,
       ),
       _QuickAction(
         icon: Icons.local_offer_rounded,
         label: l10n.get('manageCoupons'),
         color: AppColors.secondary,
         route: '/coupons',
+        isTab: false,
       ),
       _QuickAction(
         icon: Icons.bar_chart_rounded,
         label: l10n.reports,
         color: AppColors.success,
         route: '/reports',
+        isTab: false,
       ),
       _QuickAction(
         icon: Icons.settings_rounded,
         label: l10n.settings,
         color: AppColors.textPrimary,
         route: '/more',
+        isTab: true,
       ),
     ];
 
@@ -57,12 +61,14 @@ class _QuickAction {
   final String label;
   final Color color;
   final String route;
+  final bool isTab;
 
   _QuickAction({
     required this.icon,
     required this.label,
     required this.color,
     required this.route,
+    this.isTab = false,
   });
 }
 
@@ -77,7 +83,13 @@ class _QuickActionItem extends StatelessWidget {
     return Material(
       color: AppColors.card,
       child: InkWell(
-        onTap: () => context.go(action.route),
+        onTap: () {
+          if (action.isTab) {
+            context.go(action.route);
+          } else {
+            context.push(action.route);
+          }
+        },
         splashColor: action.color.withOpacity(0.2),
         child: Container(
           decoration: BoxDecoration(
