@@ -7,11 +7,13 @@ import '../../../core/l10n/app_localizations.dart';
 class SalesSummaryCard extends StatelessWidget {
   final double totalSales;
   final int transactionCount;
+  final int voidCount;
 
   const SalesSummaryCard({
     super.key,
     required this.totalSales,
     required this.transactionCount,
+    this.voidCount = 0,
   });
 
   @override
@@ -52,14 +54,21 @@ class SalesSummaryCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          Row(
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
             children: [
               _StatBadge(
                 icon: Icons.receipt_long,
                 label: '$transactionCount txn',
                 color: AppColors.secondary,
               ),
-              const SizedBox(width: 12),
+              if (voidCount > 0)
+                _StatBadge(
+                  icon: Icons.block,
+                  label: '$voidCount void',
+                  color: AppColors.error,
+                ),
               _StatBadge(
                 icon: Icons.trending_up,
                 label: 'Avg ${AppConstants.formatCurrency(average)}',

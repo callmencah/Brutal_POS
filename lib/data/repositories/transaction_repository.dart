@@ -111,14 +111,27 @@ class TransactionRepository {
       [startOfDay.toIso8601String(), endOfDay.toIso8601String()],
     );
 
+    final voidResult = await _dbHelper.rawQuery(
+      '''
+      SELECT COUNT(*) as voidCount
+      FROM ${DbConstants.tableTransactions}
+      WHERE ${DbConstants.colCreatedAt} >= ? AND ${DbConstants.colCreatedAt} < ?
+        AND ${DbConstants.colStatus} = 'voided'
+      ''',
+      [startOfDay.toIso8601String(), endOfDay.toIso8601String()],
+    );
+
+    final voidCount = voidResult.isNotEmpty ? voidResult.first['voidCount'] as int : 0;
+
     if (result.isEmpty) {
-      return {'total': 0.0, 'count': 0, 'average': 0.0};
+      return {'total': 0.0, 'count': 0, 'average': 0.0, 'voidCount': voidCount};
     }
 
     return {
       'total': (result.first['total'] as num).toDouble(),
       'count': result.first['count'] as int,
       'average': (result.first['average'] as num).toDouble(),
+      'voidCount': voidCount,
     };
   }
 

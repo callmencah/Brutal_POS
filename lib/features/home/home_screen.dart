@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final TransactionRepository _transactionRepo = TransactionRepository();
   double _totalSales = 0;
   int _transactionCount = 0;
+  int _voidCount = 0;
   List<model.Transaction> _recentTransactions = [];
   bool _isLoading = true;
 
@@ -46,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {
           _totalSales = summary['total'] ?? 0.0;
           _transactionCount = summary['count'] ?? 0;
+          _voidCount = summary['voidCount'] ?? 0;
           _recentTransactions = recent.take(5).toList();
           _isLoading = false;
         });
@@ -108,6 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SalesSummaryCard(
                                   totalSales: _totalSales,
                                   transactionCount: _transactionCount,
+                                  voidCount: _voidCount,
                                 ),
                                 const SizedBox(height: 24),
                                 Text(
@@ -159,6 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         SalesSummaryCard(
                           totalSales: _totalSales,
                           transactionCount: _transactionCount,
+                          voidCount: _voidCount,
                         ),
                         const SizedBox(height: 24),
                         Text(
