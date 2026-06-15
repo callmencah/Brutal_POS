@@ -924,37 +924,34 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 const SizedBox(height: 12),
                 
                 // Print Receipt & Share Row
-                Row(
+                Column(
                   children: [
-                    Expanded(
-                      child: BrutalButton(
-                        text: l10n.printReceipt,
-                        icon: Icons.print,
-                        height: 50,
-                        fontSize: 14,
-                        onPressed: () async {
-                          final tx = Transaction(
-                            id: state.transactionId,
-                            subtotal: cartState.subtotal,
-                            taxPercent: cartState.taxPercent,
-                            taxAmount: cartState.taxAmount,
-                            discountAmount: cartState.discountAmount,
-                            total: state.totalAmount,
-                            paymentMethod: state.methodLabel,
-                            createdAt: DateTime.now(),
-                            items: receiptItems,
-                            amountPaid: state.amountPaid,
-                            changeAmount: state.changeAmount,
-                            serviceChargeAmount: cartState.serviceChargeAmount,
-                            roundUpAmount: state.roundUpAmount,
-                          );
-                          await ReceiptPrinter.printReceipt(tx);
-                        },
-                      ),
+                    BrutalButton(
+                      text: l10n.printReceipt,
+                      icon: Icons.print,
+                      height: 50,
+                      fontSize: 14,
+                      onPressed: () async {
+                        final tx = Transaction(
+                          id: state.transactionId,
+                          subtotal: cartState.subtotal,
+                          taxPercent: cartState.taxPercent,
+                          taxAmount: cartState.taxAmount,
+                          discountAmount: cartState.discountAmount,
+                          total: state.totalAmount,
+                          paymentMethod: state.methodLabel,
+                          createdAt: DateTime.now(),
+                          items: receiptItems,
+                          amountPaid: state.amountPaid,
+                          changeAmount: state.changeAmount,
+                          serviceChargeAmount: cartState.serviceChargeAmount,
+                          roundUpAmount: state.roundUpAmount,
+                        );
+                        await ReceiptPrinter.printReceipt(tx);
+                      },
                     ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: BrutalButton(
+                    const SizedBox(height: 12),
+                    BrutalButton(
                         text: 'SHARE/EMAIL',
                         icon: Icons.share,
                         height: 50,
@@ -1088,12 +1085,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
                   children: [
-                    SizedBox(
-                      width: 260,
-                      child: BrutalButton(
+                    BrutalButton(
                         text: 'PRINT RECEIPT',
                         icon: Icons.print,
                         height: 64,
@@ -1128,11 +1122,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           await ReceiptPrinter.printReceipt(tx);
                         },
                       ),
-                    ),
-                    const SizedBox(width: 30),
-                    SizedBox(
-                      width: 260,
-                      child: BrutalButton(
+                    const SizedBox(height: 12),
+                    BrutalButton(
                         text: 'SHARE/EMAIL',
                         icon: Icons.share,
                         height: 64,
@@ -1170,7 +1161,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           await Share.shareXFiles([file], text: 'Here is your receipt from ${AppConstants.appName}.');
                         },
                       ),
-                    ),
                   ],
                 ),
                 const SizedBox(height: 32),
