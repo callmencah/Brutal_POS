@@ -20,6 +20,8 @@ class SettingsCubit extends Cubit<SettingsState> {
       final themeMode = await repository.getThemeMode();
       final qrisImage = await repository.getQrisImagePath();
       final telegramConfig = await TelegramService.getConfig();
+      final storeName = await repository.getStoreName();
+      final storeAddress = await repository.getStoreAddress();
       
       isDarkModeNotifier.value = themeMode == 'dark';
 
@@ -34,6 +36,8 @@ class SettingsCubit extends Cubit<SettingsState> {
         telegramEnabled: telegramConfig['enabled'] as bool,
         telegramToken: telegramConfig['token'] as String,
         telegramChatId: telegramConfig['chatId'] as String,
+        storeName: storeName,
+        storeAddress: storeAddress,
         isLoading: false,
       ));
     } catch (e) {
@@ -106,6 +110,16 @@ class SettingsCubit extends Cubit<SettingsState> {
       telegramToken: newToken,
       telegramChatId: newChatId,
     ));
+  }
+
+  Future<void> updateStoreName(String name) async {
+    await repository.setStoreName(name);
+    emit(state.copyWith(storeName: name));
+  }
+
+  Future<void> updateStoreAddress(String address) async {
+    await repository.setStoreAddress(address);
+    emit(state.copyWith(storeAddress: address));
   }
 }
 

@@ -12,6 +12,8 @@ class SettingsState extends Equatable {
   final bool telegramEnabled;
   final String telegramToken;
   final String telegramChatId;
+  final String storeName;
+  final String storeAddress;
 
   const SettingsState({
     this.taxPercent = 11.0,
@@ -25,6 +27,8 @@ class SettingsState extends Equatable {
     this.telegramEnabled = false,
     this.telegramToken = '',
     this.telegramChatId = '',
+    this.storeName = 'BRUTAL POS',
+    this.storeAddress = '',
   });
 
   SettingsState copyWith({
@@ -40,6 +44,8 @@ class SettingsState extends Equatable {
     bool? telegramEnabled,
     String? telegramToken,
     String? telegramChatId,
+    String? storeName,
+    String? storeAddress,
   }) {
     return SettingsState(
       taxPercent: taxPercent ?? this.taxPercent,
@@ -53,6 +59,8 @@ class SettingsState extends Equatable {
       telegramEnabled: telegramEnabled ?? this.telegramEnabled,
       telegramToken: telegramToken ?? this.telegramToken,
       telegramChatId: telegramChatId ?? this.telegramChatId,
+      storeName: storeName ?? this.storeName,
+      storeAddress: storeAddress ?? this.storeAddress,
     );
   }
 
@@ -60,7 +68,8 @@ class SettingsState extends Equatable {
   List<Object?> get props => [
     taxPercent, locale, isLoading, roundUpEnabled, 
     serviceChargeEnabled, serviceChargePercent, themeMode, qrisImagePath,
-    telegramEnabled, telegramToken, telegramChatId
+    telegramEnabled, telegramToken, telegramChatId,
+    storeName, storeAddress
   ];
 }
 

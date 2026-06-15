@@ -3,6 +3,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'package:intl/intl.dart';
+import '../../data/repositories/settings_repository.dart';
 import '../../data/models/transaction.dart';
 import '../constants/app_constants.dart';
 
@@ -11,6 +12,10 @@ class ReceiptPrinter {
 
   /// Generates a PDF document for a 58mm thermal receipt.
   static Future<Uint8List> generateReceiptPdf(Transaction transaction) async {
+    final settingsRepo = SettingsRepository();
+    final storeName = await settingsRepo.getStoreName();
+    final storeAddress = await settingsRepo.getStoreAddress();
+
     final pdf = pw.Document();
     
     // 58mm thermal printer width is approx 48mm printable area.
@@ -27,10 +32,18 @@ class ReceiptPrinter {
             children: [
               // Header
               pw.Text(
-                AppConstants.appName,
+                storeName,
                 style: pw.TextStyle(fontSize: 14, fontWeight: pw.FontWeight.bold),
                 textAlign: pw.TextAlign.center,
               ),
+              if (storeAddress.isNotEmpty) ...[
+                pw.SizedBox(height: 4),
+                pw.Text(
+                  storeAddress,
+                  style: const pw.TextStyle(fontSize: 8),
+                  textAlign: pw.TextAlign.center,
+                ),
+              ],
               pw.SizedBox(height: 4),
               pw.Text(
                 'Receipt',

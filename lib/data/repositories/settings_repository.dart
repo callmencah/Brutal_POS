@@ -66,6 +66,24 @@ class SettingsRepository {
     await setSetting(DbConstants.settingQrisImage, path);
   }
 
+  Future<String> getStoreName() async {
+    final value = await getSetting(DbConstants.settingStoreName);
+    return value ?? 'BRUTAL POS';
+  }
+
+  Future<void> setStoreName(String name) async {
+    await setSetting(DbConstants.settingStoreName, name);
+  }
+
+  Future<String> getStoreAddress() async {
+    final value = await getSetting(DbConstants.settingStoreAddress);
+    return value ?? '';
+  }
+
+  Future<void> setStoreAddress(String address) async {
+    await setSetting(DbConstants.settingStoreAddress, address);
+  }
+
   Future<String?> getSetting(String key) async {
     final maps = await _dbHelper.queryWhere(
       DbConstants.tableSettings,

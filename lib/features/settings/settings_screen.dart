@@ -723,6 +723,78 @@ class _SettingsView extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
 
+                // RECEIPT SETTINGS
+                const _SectionTitle('RECEIPT SETTINGS'),
+                const SizedBox(height: 8),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: AppColors.card,
+                    border: Border.all(color: AppColors.border, width: 3),
+                    boxShadow: [
+                      BoxShadow(
+                          color: AppColors.shadow,
+                          offset: Offset(4, 4),
+                          blurRadius: 0),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Receipt Header',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.textPrimary,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  'Customize store name and address',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 13,
+                                    color: AppColors.textSecondary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              _showReceiptConfigDialog(context, state);
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: AppColors.primary,
+                                border: Border.all(color: AppColors.shadow, width: 2),
+                              ),
+                              child: Text(
+                                'EDIT',
+                                style: GoogleFonts.spaceGrotesk(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.textPrimary,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
+
                 // ABOUT
                 _SectionTitle(l10n.about.toUpperCase()),
                 const SizedBox(height: 8),
@@ -992,6 +1064,83 @@ class _SettingsView extends StatelessWidget {
                           token: tokenCtrl.text.trim(),
                           chatId: chatCtrl.text.trim(),
                         );
+                        Navigator.pop(dialogCtx);
+                      },
+                      child: Text('SAVE'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showReceiptConfigDialog(BuildContext context, SettingsState state) {
+    final nameCtrl = TextEditingController(text: state.storeName);
+    final addressCtrl = TextEditingController(text: state.storeAddress);
+    
+    showDialog(
+      context: context,
+      builder: (dialogCtx) => Dialog(
+        backgroundColor: AppColors.surface,
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        child: Container(
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.border, width: 3),
+            boxShadow: [
+              BoxShadow(color: AppColors.shadow, offset: Offset(6, 6)),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'RECEIPT SETTINGS',
+                style: GoogleFonts.spaceGrotesk(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.textPrimary,
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: nameCtrl,
+                style: GoogleFonts.inter(color: AppColors.textPrimary),
+                decoration: InputDecoration(
+                  labelText: 'Store Name',
+                  hintText: 'e.g. BRUTAL POS',
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: addressCtrl,
+                style: GoogleFonts.inter(color: AppColors.textPrimary),
+                maxLines: 3,
+                decoration: InputDecoration(
+                  labelText: 'Store Address',
+                  hintText: 'e.g. Jl. Jenderal Sudirman No. 1',
+                ),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () => Navigator.pop(dialogCtx),
+                      child: Text('CANCEL'),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.read<SettingsCubit>().updateStoreName(nameCtrl.text.trim());
+                        context.read<SettingsCubit>().updateStoreAddress(addressCtrl.text.trim());
                         Navigator.pop(dialogCtx);
                       },
                       child: Text('SAVE'),

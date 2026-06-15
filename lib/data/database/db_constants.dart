@@ -80,5 +80,7 @@ class DbConstants {
   static String settingServiceChargePercent = 'service_charge_percent';
   static String settingThemeMode = 'theme_mode';
   static String settingQrisImage = 'qris_image_path';
+  static String settingStoreName = 'store_name';
+  static String settingStoreAddress = 'store_address';
 }
 
